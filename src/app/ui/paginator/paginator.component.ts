@@ -32,11 +32,11 @@ export class PaginatorComponent implements OnInit {
 
   private _getCurrentPage(): number {
     let currentPage: number;
-    if (!!this.pageInfo.next) {
-      let nextPage: string = new URLSearchParams(`?${this.pageInfo.next.split('?')[1]}`).get('page') as string;
+    if (!!this.pageInfo?.next) {
+      let nextPage: string = new URLSearchParams(`?${this.pageInfo?.next.split('?')[1]}`).get('page') as string;
       currentPage = +nextPage - 1;
     } else {
-      let prevPage = new URLSearchParams(`?${this.pageInfo.next.split('?')[1]}`).get('page') as string;
+      let prevPage = new URLSearchParams(`?${this.pageInfo?.next.split('?')[1]}`).get('page') as string;
       currentPage = +prevPage + 1;
     }
     return currentPage;
@@ -47,7 +47,7 @@ export class PaginatorComponent implements OnInit {
 
     if (this.currentPage === 1) return listOfNumber;
 
-    if (this.currentPage === this.pageInfo.pages) {
+    if (this.currentPage === this.pageInfo?.pages) {
       listOfNumber = [this.pageInfo.pages - 2, this.pageInfo.pages - 1, this.pageInfo.pages];
     } else {
       listOfNumber = [this.currentPage - 1, this.currentPage, this.currentPage + 1];
