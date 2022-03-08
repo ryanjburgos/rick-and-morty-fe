@@ -1,5 +1,10 @@
-<div class="row">
-  <div *ngFor="let character of characters" class="col-lg-4 col-md-6 col-sm-12">
-    <app-card [character]="character"></app-card>
+<ng-container *ngIf="characters">
+  <div class="row">
+    <div *ngFor="let character of characters" class="col-lg-4 col-md-6 col-sm-12">
+      <app-card [character]="character"></app-card>
+    </div>
   </div>
-</div>
+  <div class="mt-3 d-flex justify-content-center">
+    <app-paginator [pageInfo]="pageInfo" (next$)="movePage($event)" (prev$)="movePage($event)"></app-paginator>
+  </div>
+</ng-container>

@@ -11,4 +11,8 @@ export class CharactersService {
   public getCharacters(pageNumber: number = 1): Observable<IBaseResponse<ICharacter>> {
     return this.http.get<IBaseResponse<ICharacter>>(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`);
   }
+
+  public moveCharactersPage(url: string): Observable<IBaseResponse<ICharacter>> {
+    return this.http.get<IBaseResponse<ICharacter>>(url);
+  }
 }

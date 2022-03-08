@@ -1,0 +1,13 @@
+<nav>
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }" (click)="prev()">
+      <span class="page-link">Previous</span>
+    </li>
+    <li *ngFor="let n of numberOfPages" class="page-item" aria-current="page" [ngClass]="{ active: n === currentPage }">
+      <span class="page-link">{{ n }}</span>
+    </li>
+    <li class="page-item">
+      <a class="page-link" [ngClass]="{ disabled: currentPage === pageInfo.pages }" (click)="next()">Next</a>
+    </li>
+  </ul>
+</nav>

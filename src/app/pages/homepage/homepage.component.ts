@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBaseResponse } from '../../shared/models/BaseResponse.model';
+import { IBaseResponse, IInfo } from '../../shared/models/BaseResponse.model';
 import { ICharacter } from '../../shared/models/Character.model';
 import { CharactersService } from '../../shared/services/http/characters.service';
 
@@ -10,13 +10,25 @@ import { CharactersService } from '../../shared/services/http/characters.service
 })
 export class HomepageComponent implements OnInit {
   public characters!: Array<ICharacter>;
+  public pageInfo!: IInfo;
 
   constructor(private characterService: CharactersService) {
-    console.log();
-    this.characterService.getCharacters().subscribe(({ results }: IBaseResponse<ICharacter>) => {
+    this._loadCharactersAndPageInfo();
+  }
+
+  public ngOnInit(): void {}
+
+  public movePage(url: string): void {
+    this.characterService.moveCharactersPage(url).subscribe(({ info, results }: IBaseResponse<ICharacter>) => {
+      this.pageInfo = info;
       this.characters = results;
     });
   }
 
-  public ngOnInit(): void {}
+  private _loadCharactersAndPageInfo(): void {
+    this.characterService.getCharacters().subscribe(({ info, results }: IBaseResponse<ICharacter>) => {
+      this.pageInfo = info;
+      this.characters = results;
+    });
+  }
 }
