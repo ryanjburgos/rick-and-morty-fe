@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICharacter } from '../../shared/models/Character.model';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  @Input() public character!: ICharacter;
 
-  constructor() { }
+  @Output() public detailClick$: EventEmitter<number> = new EventEmitter<number>();
 
-  ngOnInit(): void {
+  constructor() {}
+
+  public ngOnInit(): void {}
+
+  public onDetailClick(id: number): void {
+    this.detailClick$.emit(id);
   }
-
 }

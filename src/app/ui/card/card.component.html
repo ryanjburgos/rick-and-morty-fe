@@ -1,0 +1,17 @@
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0">
+    <div class="col-md-4 col-sm-12">
+      <img [src]="character.image" class="img-fluid rounded-start" />
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <div class="card-body">
+        <h5 class="card-title">{{ character.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Species: {{ character.species }}</h6>
+        <p class="card-text">Status: {{ character.status }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <button class="btn btn-primary" (click)="onDetailClick(character.id)">Details</button>
+  </div>
+</div>
