@@ -1,4 +1,4 @@
-<ng-container *ngIf="characters">
+<ng-container *ngIf="!(isLoading$ | async)">
   <div class="row">
     <div *ngFor="let character of characters" class="col-lg-4 col-md-6 col-sm-12">
       <app-card [character]="character"></app-card>
