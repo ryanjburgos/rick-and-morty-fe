@@ -17,7 +17,7 @@ export class HomepageComponent implements OnInit {
   public isLoading$: Observable<boolean> = this.spinner.isLoading$;
 
   constructor(private characterService: CharactersService, private spinner: SpinnerService) {
-    this._loadCharactersAndPageInfo();
+    this.loadCharactersByPageNumber(1);
   }
 
   public ngOnInit(): void {}
@@ -31,9 +31,9 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  private _loadCharactersAndPageInfo(): void {
+  public loadCharactersByPageNumber(n: number): void {
     this.spinner.show();
-    this.characterService.getCharacters().subscribe(({ info, results }: IBaseResponse<ICharacter>) => {
+    this.characterService.getCharacters(n).subscribe(({ info, results }: IBaseResponse<ICharacter>) => {
       this.pageInfo = info;
       this.characters = results;
       this.spinner.hide();

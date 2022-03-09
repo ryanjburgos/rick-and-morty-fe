@@ -5,6 +5,11 @@
     </div>
   </div>
   <div class="mt-3 d-flex justify-content-center">
-    <app-paginator [pageInfo]="pageInfo" (next$)="movePage($event)" (prev$)="movePage($event)"></app-paginator>
+    <app-paginator
+      [pageInfo]="pageInfo"
+      (next$)="movePage($event)"
+      (prev$)="movePage($event)"
+      (pageNumber$)="loadCharactersByPageNumber($event)"
+    ></app-paginator>
   </div>
 </ng-container>

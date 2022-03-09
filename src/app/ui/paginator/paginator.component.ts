@@ -11,6 +11,7 @@ export class PaginatorComponent implements OnInit {
 
   @Output() public prev$: EventEmitter<string> = new EventEmitter<string>();
   @Output() public next$: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public pageNumber$: EventEmitter<number> = new EventEmitter<number>();
 
   public numberOfPages: Array<number> = [];
   public currentPage!: number;
@@ -22,12 +23,16 @@ export class PaginatorComponent implements OnInit {
     this.numberOfPages = this._numberOfPagesToShow();
   }
 
-  public prev(): void {
+  public onPrevClick(): void {
     this.prev$.emit(this.pageInfo.prev);
   }
 
-  public next(): void {
+  public onNextClick(): void {
     this.next$.emit(this.pageInfo.next);
+  }
+
+  public onPageNumberClick(n: number): void {
+    this.pageNumber$.emit(n);
   }
 
   private _getCurrentPage(): number {
