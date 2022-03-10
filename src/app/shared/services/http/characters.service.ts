@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBaseResponse } from '../../models/BaseResponse.model';
-import { ICharacter } from '../../models/Character.model';
+import { IBaseResponse } from '../../models/base-response.model';
+import { ICharacter } from '../../models/character.model';
 
 @Injectable()
 export class CharactersService {

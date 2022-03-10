@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ILocation } from '../../models/location.model';
 
 @Injectable()
-export class CharactersService {
+export class LocationsService {
   constructor(private http: HttpClient) {}
 
-  public getCharacters(pageNumber: number = 1): Observable<any> {
-    return this.http.get(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`);
+  public getLocation(url: string): Observable<ILocation> {
+    return this.http.get<ILocation>(url);
   }
 }

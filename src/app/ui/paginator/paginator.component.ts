@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IInfo } from '../../shared/models/BaseResponse.model';
+import { IInfo } from '../../shared/models/base-response.model';
 
 @Component({
   selector: 'app-paginator',

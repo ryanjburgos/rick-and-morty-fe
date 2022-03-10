@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { IBaseResponse, IInfo } from '../../shared/models/BaseResponse.model';
-import { ICharacter } from '../../shared/models/Character.model';
+import { IBaseResponse, IInfo } from '../../shared/models/base-response.model';
+import { ICharacter } from '../../shared/models/character.model';
 import { CharactersService } from '../../shared/services/http/characters.service';
 import { SpinnerService } from '../../shared/services/utils/spinner.service';
+import { ModalCharacterDetailsComponent } from '../../ui/modal-character-details/modal-character-details.component';
 
 @Component({
   selector: 'app-homepage',
@@ -16,7 +18,7 @@ export class HomepageComponent implements OnInit {
 
   public isLoading$: Observable<boolean> = this.spinner.isLoading$;
 
-  constructor(private characterService: CharactersService, private spinner: SpinnerService) {
+  constructor(private characterService: CharactersService, private spinner: SpinnerService, private modal: NgbModal) {
     this.loadCharactersByPageNumber(1);
   }
 
@@ -38,5 +40,14 @@ export class HomepageComponent implements OnInit {
       this.characters = results;
       this.spinner.hide();
     });
+  }
+
+  public onOpenDetails(character: ICharacter): void {
+    const modalRef = this.modal.open(ModalCharacterDetailsComponent, {
+      size: 'xl',
+      scrollable: true,
+    });
+
+    modalRef.componentInstance.character = character;
   }
 }

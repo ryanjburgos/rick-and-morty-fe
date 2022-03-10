@@ -1,0 +1,115 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ character.name }}</h5>
+</div>
+<div class="modal-body">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4 col-sm-12">
+        <img [src]="character.image" class="img-fluid rounded-start" />
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div class="card-body">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Species: {{ character.species }}</h6>
+          <p class="card-text">Status: {{ character.status }}</p>
+          <div class="accordion accordion-flush border">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#origin"
+                  aria-expanded="false"
+                  aria-controls="origin"
+                  (click)="loadOriginInfo(character.origin)"
+                >
+                  Origin
+                </button>
+              </h2>
+              <div id="origin" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <div *ngIf="character.origin.url === ''; else unknownOrigin">Unknown Origin</div>
+                  <ng-template #unknownOrigin>
+                    <div *ngIf="!origin; else originInfo" class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status"></div>
+                    </div>
+                    <ng-template #originInfo>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{ origin.name }}</li>
+                        <li class="list-group-item">Dimension: {{ origin.dimension }}</li>
+                        <li class="list-group-item">Number of residents: {{ origin.residents.length }}</li>
+                      </ul>
+                    </ng-template>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#location"
+                  aria-expanded="false"
+                  aria-controls="location"
+                  (click)="loadLocationInfo(character.location)"
+                >
+                  Location
+                </button>
+              </h2>
+              <div id="location" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <div *ngIf="character.location.url === ''; else unknownLocation">Unknown Location</div>
+                  <ng-template #unknownLocation>
+                    <div *ngIf="!location; else locationInfo" class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status"></div>
+                    </div>
+                    <ng-template #locationInfo>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{ location.name }}</li>
+                        <li class="list-group-item">Dimension: {{ location.dimension }}</li>
+                        <li class="list-group-item">Number of residents: {{ location.residents.length }}</li>
+                      </ul>
+                    </ng-template>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#episode"
+                  aria-expanded="false"
+                  aria-controls="episode"
+                  (click)="loadAllRelatedEpisode(character.episode)"
+                >
+                  Episode
+                </button>
+              </h2>
+              <div id="episode" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <div *ngIf="!episodes; else episodeInfo" class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status"></div>
+                  </div>
+                  <ng-template #episodeInfo>
+                    <ul class="list-group list-group-flush">
+                      <li *ngFor="let ep of episodes" class="list-group-item">{{ ep.episode }} - {{ ep.name }}</li>
+                    </ul>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="onCloseClick()">Close</button>
+</div>
