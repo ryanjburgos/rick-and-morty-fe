@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center justify-content-center" routerLink="">
       <div class="navbar-logo-container">
@@ -16,9 +16,9 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li *ngFor="let item of menuItem" class="nav-item">
+        <li *ngFor="let item of menuItem" class="nav-item text-center">
           <a class="nav-link" [routerLink]="item.path" routerLinkActive="active">{{ item.label }}</a>
         </li>
       </ul>
